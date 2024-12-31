@@ -56,7 +56,7 @@
         const user_id = JSON.parse(atob(token.split(".")[1])).userId;
         // Fetch and display connection requests
         fetch(
-          `http://localhost:5000/api/connections/requests?user_id=${user_id}`,
+          `mentorship-matching-platform-delta.vercel.app/api/connections/requests?user_id=${user_id}`,
           {
             headers: {
               Authorization: `Bearer ${localStorage.getItem("token")}`,
@@ -93,7 +93,7 @@
 
         // Fetch and display active connections
         fetch(
-          `http://localhost:5000/api/connections/active?user_id=${user_id}`,
+          `mentorship-matching-platform-delta.vercel.app/api/connections/active?user_id=${user_id}`,
           {
             headers: {
               Authorization: `Bearer ${localStorage.getItem("token")}`,
@@ -136,7 +136,7 @@
               ? "accept"
               : "decline";
 
-            fetch("http://localhost:5000/api/connections/handle", {
+            fetch("mentorship-matching-platform-delta.vercel.app/api/connections/handle", {
               method: "POST",
               headers: {
                 "Content-Type": "application/json",
@@ -169,7 +169,7 @@
             const action = "decline";
 
             if (confirm("Are you sure you want to remove this connection?")) {
-              fetch("http://localhost:5000/api/connections/handle", {
+              fetch("mentorship-matching-platform-delta.vercel.app/api/connections/handle", {
                 method: "POST",
                 headers: {
                   "Content-Type": "application/json",

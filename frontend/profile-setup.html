@@ -76,7 +76,7 @@
         const bio = document.getElementById("bio").value.trim();
         try {
           const response = await fetch(
-            "http://localhost:5000/api/profiles/profile",
+            "mentorship-matching-platform-delta.vercel.app/api/profiles/profile",
             {
               method: "POST",
               headers: {
@@ -123,7 +123,7 @@
         ) {
           try {
             const response = await fetch(
-              "http://localhost:5000/api/profiles/delete",
+              "mentorship-matching-platform-delta.vercel.app/api/profiles/delete",
               {
                 method: "DELETE",
                 headers: {

@@ -67,7 +67,7 @@
         try {
           const queryParams = new URLSearchParams(filters).toString();
           const response = await fetch(
-            `http://localhost:5000/api/profiles/discover?${queryParams}`,
+            `mentorship-matching-platform-delta.vercel.app/api/profiles/discover?${queryParams}`,
             {
               headers: {
                 Authorization: `Bearer ${localStorage.getItem("token")}`,
@@ -166,7 +166,7 @@
           }
 
           // Send the connection request
-          fetch("http://localhost:5000/api/connections/send", {
+          fetch("mentorship-matching-platform-delta.vercel.app/api/connections/send", {
             method: "POST",
             headers: {
               "Content-Type": "application/json",
