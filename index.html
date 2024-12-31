@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Mentorship Matching Platform</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+
+  <body>
+    <!-- Header -->
+    <header class="header">
+      <h1>Mentorship Matching Platform</h1>
+      <nav>
+        <ul>
+          <li><a href="#">About Us</a></li>
+          <li><a href="#">Blogs</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <!-- Main Content -->
+    <main class="index">
+      <!-- Landing Section -->
+      <section class="landing">
+        <h2>Find Your Perfect Mentor or Mentee</h2>
+        <p>Connect, learn, and grow with tailored mentorship opportunities.</p>
+        <div class="cta-buttons">
+          <button id="login-btn">Login</button>
+          <button id="register-btn">Register</button>
+        </div>
+      </section>
+
+      <!-- Authentication Section -->
+      <section id="auth-section" class="hidden">
+        <!-- Login Form -->
+        <div id="login-form" class="form-container hidden">
+          <h2>Login</h2>
+          <form id="login">
+            <label for="login-email">Email:</label>
+            <input
+              type="email"
+              id="login-email"
+              placeholder="Enter your email"
+              required
+            />
+
+            <label for="login-password">Password:</label>
+            <div class="password-container">
+              <input
+                type="password"
+                id="login-password"
+                placeholder="Enter your password"
+                required
+              />
+              <button
+                type="button"
+                class="toggle-password"
+                data-target="login-password"
+              >
+                Show
+              </button>
+            </div>
+            <button type="submit" class="btn">Login</button>
+          </form>
+          <p>
+            Don't have an account?
+            <a href="#" id="switch-to-register">Register</a>
+          </p>
+        </div>
+        <!-- Login Status -->
+        <p id="login-status"></p>
+
+        <!-- Registration Form -->
+        <div id="register-form" class="form-container hidden">
+          <h2>Register</h2>
+          <form id="register">
+            <label for="register-name">Full Name:</label>
+            <input
+              type="text"
+              id="register-name"
+              placeholder="Enter your full name"
+              required
+            />
+            <label for="register-email">Email:</label>
+            <input
+              type="email"
+              id="register-email"
+              placeholder="Enter your email"
+              required
+            />
+            <label for="register-password">Password:</label>
+            <div class="password-container">
+              <input
+                type="password"
+                id="register-password"
+                placeholder="Create a password"
+                required
+              />
+              <button
+                type="button"
+                class="toggle-password"
+                data-target="register-password"
+              >
+                Show
+              </button>
+            </div>
+
+            <!-- Role Selection -->
+            <div class="role-container">
+              <label for="mentor">
+                <input type="radio" id="mentor" name="role" value="mentor" />
+                Mentor
+              </label>
+              <label for="mentee">
+                <input type="radio" id="mentee" name="role" value="mentee" />
+                Mentee
+              </label>
+            </div>
+            <button type="submit" class="btn">Register</button>
+          </form>
+          <p>
+            Already have an account?
+            <a href="#" id="switch-to-login">Login</a>
+          </p>
+        </div>
+
+        <!-- Registration Status -->
+        <p id="registration-status"></p>
+      </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <p>© 2024 Mentorship Matching Platform. All rights reserved.</p>
+    </footer>
+
+    <!-- JavaScript -->
+    <script src="./scripts.js"></script>
+  </body>
+</html>

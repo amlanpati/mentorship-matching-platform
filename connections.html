@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Connections</title>
+    <link rel="stylesheet" href="./styles.css" />
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+      rel="stylesheet"
+    />
+  </head>
+
+  <body>
+    <header class="header">
+      <h1>Connections</h1>
+      <nav><a href="discover.html">Back to Discover</a></nav>
+    </header>
+    <div class="connections-container">
+      <h2>Incoming Requests</h2>
+      <div id="incoming-requests">
+        <!-- Requests will be dynamically populated -->
+      </div>
+      <h2>Active Connections</h2>
+      <div id="active-connections">
+        <!-- Active connections will be dynamically populated -->
+      </div>
+    </div>
+    <script>
+      // Middleware to protect routes
+      function protectRoute() {
+        const token = localStorage.getItem("token");
+        if (!token) {
+          alert("Unauthorized! Please log in to access this page.");
+          window.location.href = "./index.html";
+        }
+      }
+
+      // Protect route
+      protectRoute();
+
+      document.addEventListener("DOMContentLoaded", () => {
+        const incomingRequestsContainer =
+          document.getElementById("incoming-requests");
+        const activeConnectionsContainer =
+          document.getElementById("active-connections");
+
+        // Extract user_id from token stored in localStorage
+        const token = localStorage.getItem("token");
+        if (!token) {
+          alert("Unauthorized! Please log in to access this page.");
+          window.location.href = "./index.html"; // Redirect to login page
+          return;
+        }
+
+        const user_id = JSON.parse(atob(token.split(".")[1])).userId;
+        // Fetch and display connection requests
+        fetch(
+          `http://localhost:5000/api/connections/requests?user_id=${user_id}`,
+          {
+            headers: {
+              Authorization: `Bearer ${localStorage.getItem("token")}`,
+            },
+          }
+        )
+          .then((response) => response.json())
+          .then((data) => {
+            const requests = data.requestsReceived || [];
+            if (requests.length === 0) {
+              incomingRequestsContainer.innerHTML =
+                "<p>No incoming connection requests.</p>";
+            } else {
+              incomingRequestsContainer.innerHTML = requests
+                .map(
+                  (request) => `
+              <div class="request-card">
+                <p><strong>${request.name}</strong> wants to connect. Request sent at: ${request.friendly_created_at}</p>
+                <div>
+                  <button class="accept-request-btn" data-request-id="${request.id}">Accept</button>
+                  <button class="decline-request-btn" data-request-id="${request.id}">Decline</button>
+                </div>
+              </div>
+            `
+                )
+                .join("");
+            }
+          })
+          .catch((error) => {
+            console.error("Error fetching connection requests:", error);
+            incomingRequestsContainer.innerHTML =
+              "<p>Error loading connection requests.</p>";
+          });
+
+        // Fetch and display active connections
+        fetch(
+          `http://localhost:5000/api/connections/active?user_id=${user_id}`,
+          {
+            headers: {
+              Authorization: `Bearer ${localStorage.getItem("token")}`,
+            },
+          }
+        )
+          .then((response) => response.json())
+          .then((data) => {
+            const connections = data.connections || [];
+            if (connections.length === 0) {
+              activeConnectionsContainer.innerHTML =
+                "<p>No active connections.</p>";
+            } else {
+              activeConnectionsContainer.innerHTML = connections
+                .map(
+                  (connection) => `
+              <div class="connection-card">
+                <p><strong>${connection.name}</strong>, ${connection.role}</p>
+                <i class="fa-solid fa-circle-xmark decline-connection-icon" data-request-id="${connection.id}" title="Remove Connection"></i>
+              </div>
+            `
+                )
+                .join("");
+            }
+          })
+          .catch((error) => {
+            console.error("Error fetching active connections:", error);
+            activeConnectionsContainer.innerHTML =
+              "<p>Error loading active connections.</p>";
+          });
+
+        // Handle accept/decline requests
+        document.addEventListener("click", (e) => {
+          if (
+            e.target.classList.contains("accept-request-btn") ||
+            e.target.classList.contains("decline-request-btn")
+          ) {
+            const requestId = e.target.dataset.requestId;
+            const action = e.target.classList.contains("accept-request-btn")
+              ? "accept"
+              : "decline";
+
+            fetch("http://localhost:5000/api/connections/handle", {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json",
+                Authorization: `Bearer ${localStorage.getItem("token")}`,
+              },
+              body: JSON.stringify({ connection_id: requestId, action }),
+            })
+              .then((response) => response.json())
+              .then((data) => {
+                if (data.message) {
+                  if (action == "decline") {
+                    alert(`Request ${action}d successfully!`);
+                  } else {
+                    alert(`Request ${action}ed successfully!`);
+                  }
+                  location.reload();
+                } else {
+                  alert("Failed to process request.");
+                }
+              })
+              .catch((error) => {
+                console.error("Error processing request:", error);
+                alert("Error processing request.");
+              });
+          }
+
+          // Handle decline active connection
+          if (e.target.classList.contains("decline-connection-icon")) {
+            const requestId = e.target.dataset.requestId;
+            const action = "decline";
+
+            if (confirm("Are you sure you want to remove this connection?")) {
+              fetch("http://localhost:5000/api/connections/handle", {
+                method: "POST",
+                headers: {
+                  "Content-Type": "application/json",
+                  Authorization: `Bearer ${localStorage.getItem("token")}`,
+                },
+                body: JSON.stringify({ connection_id: requestId, action }),
+              })
+                .then((response) => response.json())
+                .then((data) => {
+                  if (data.success) {
+                    alert("Connection removed successfully!");
+                    location.reload();
+                  } else {
+                    alert("Failed to remove connection.");
+                  }
+                })
+                .catch((error) => {
+                  console.error("Error removing connection:", error);
+                  alert("Error removing connection.");
+                });
+            }
+          }
+        });
+      });
+    </script>
+  </body>
+</html>
