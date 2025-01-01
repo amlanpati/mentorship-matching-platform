@@ -20,7 +20,8 @@
 }
 
 .index {
-  display: flex;
+  width: 100%;
+  display: inline-flex;
   justify-content: center;
   align-items: center;
   min-height: calc(100vh - 80px);
@@ -141,6 +142,7 @@ header ul {
   padding: 1rem;
   background-color: var(--primary-color);
   color: var(--accent-color);
+  min-width: 600px;
 }
 
 /* Auth Section */
@@ -153,11 +155,15 @@ header ul {
   color: var(--accent-color);
   padding: 1.5rem;
   text-align: center;
+  width: 100%;
+  min-width: 350px;
+  max-width: 450px;
 }
 
 .form-container {
-  margin: 0 auto;
-  width: 100vw;
+  margin: 0;
+  width: 100%;
+  min-width: 300px;
   max-width: 400px;
   background-color: var(--secondary-color);
   border: 0.5px solid var(--accent-color);
@@ -420,19 +426,16 @@ form button:hover {
   width: auto;
   max-width: 50vw;
   height: auto;
-  display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding: 0;
+  padding: 1rem 0 0 2rem;
   margin: 0;
 }
 
 .image-container img {
-  margin-top: 2rem;
   width: 45vw;
   border-radius: 20px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
 }
 
 /* Connection Page */

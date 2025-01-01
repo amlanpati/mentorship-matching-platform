@@ -10,6 +10,18 @@ document.addEventListener("DOMContentLoaded", () => {
   const switchToRegister = document.getElementById("switch-to-register");
   const switchToLogin = document.getElementById("switch-to-login");
   const logoutBtn = document.getElementById("logout-btn");
+  const imageContainer = document.querySelector(".image-container");
+
+  function toggleImageVisibility() {
+    const isLoginFormVisible = !loginForm.classList.contains("hidden");
+    const isRegisterFormVisible = !registerForm.classList.contains("hidden");
+
+    if (isLoginFormVisible || isRegisterFormVisible) {
+      imageContainer.classList.add("hidden");
+    } else {
+      imageContainer.classList.remove("hidden");
+    }
+  }
 
   // Helper Functions
   function toggleForms(showLogin) {
@@ -21,6 +33,7 @@ document.addEventListener("DOMContentLoaded", () => {
       registerForm.classList.remove("hidden");
       loginForm.classList.add("hidden");
     }
+    toggleImageVisibility();
   }
 
   function showError(input, message) {
@@ -61,6 +74,7 @@ document.addEventListener("DOMContentLoaded", () => {
       e.preventDefault();
       toggleForms(true);
     });
+    toggleImageVisibility();
   }
 
   // Handle Login Form Submission
@@ -79,7 +93,7 @@ document.addEventListener("DOMContentLoaded", () => {
       }
 
       try {
-        const response = await fetch("/api/auth/login", {
+        const response = await fetch("http://localhost:5000/api/auth/login", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ email, password }),
@@ -142,7 +156,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
       try {
         const response = await fetch(
-          "/api/auth/register",
+          "http://localhost:5000/api/auth/register",
           {
             method: "POST",
             headers: { "Content-Type": "application/json" },
