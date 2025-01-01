@@ -12,51 +12,56 @@
   </head>
 
   <body>
-    <header class="header">
-      <h1>Profile Setup</h1>
-      <nav>
-        <a href="discover.html">Back to Discover</a>
-        <button id="delete-btn" class="nav-link">
-          <i class="fa-solid fa-ban"></i> Delete Account
-        </button>
-      </nav>
-    </header>
-    <main class="profile">
-      <form id="profile-form">
-        <label for="role">Role:</label>
-        <select id="role" required>
-          <option value="mentor">Mentor</option>
-          <option value="mentee">Mentee</option>
-        </select>
-        <label for="skills">Skills:</label>
-        <input
-          type="text"
-          id="skills"
-          placeholder="e.g., JavaScript, Python"
-          required
-        />
-        <label for="interests">Interests:</label>
-        <input
-          type="text"
-          id="interests"
-          placeholder="e.g., AI, Web Development"
-          required
-        />
-        <label for="bio">Bio:</label>
-        <textarea
-          id="bio"
-          placeholder="Tell us about yourself"
-          required
-        ></textarea>
-        <button type="submit">Save Profile</button>
-        <p id="profile-status"></p>
-      </form>
-    </main>
+    <div class="page-container">
+      <!-- Header -->
+      <header class="header">
+        <h1>Profile Setup</h1>
+        <nav>
+          <a href="discover.html">Back to Discover</a>
+          <button id="delete-btn" class="nav-link">
+            <i class="fa-solid fa-ban"></i> Delete Account
+          </button>
+        </nav>
+      </header>
 
-    <!-- Footer -->
-    <footer class="footer">
-      <p>© 2024 Mentorship Matching Platform. All rights reserved.</p>
-    </footer>
+      <!-- Main -->
+      <main class="profile">
+        <form id="profile-form">
+          <label for="role">Role:</label>
+          <select id="role" required>
+            <option value="mentor">Mentor</option>
+            <option value="mentee">Mentee</option>
+          </select>
+          <label for="skills">Skills:</label>
+          <input
+            type="text"
+            id="skills"
+            placeholder="e.g., JavaScript, Python"
+            required
+          />
+          <label for="interests">Interests:</label>
+          <input
+            type="text"
+            id="interests"
+            placeholder="e.g., AI, Web Development"
+            required
+          />
+          <label for="bio">Bio:</label>
+          <textarea
+            id="bio"
+            placeholder="Tell us about yourself"
+            required
+          ></textarea>
+          <button type="submit">Save Profile</button>
+          <p id="profile-status"></p>
+        </form>
+      </main>
+
+      <!-- Footer -->
+      <footer class="footer">
+        <p>© 2024 Mentorship Matching Platform. All rights reserved.</p>
+      </footer>
+    </div>
 
     <script src="./scripts.js"></script>
     <script>
@@ -81,17 +86,14 @@
         const interests = document.getElementById("interests").value.trim();
         const bio = document.getElementById("bio").value.trim();
         try {
-          const response = await fetch(
-            "/api/profiles/profile",
-            {
-              method: "POST",
-              headers: {
-                "Content-Type": "application/json",
-                Authorization: `Bearer ${localStorage.getItem("token")}`,
-              },
-              body: JSON.stringify({ role, skills, interests, bio }),
-            }
-          );
+          const response = await fetch("/api/profiles/profile", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: `Bearer ${localStorage.getItem("token")}`,
+            },
+            body: JSON.stringify({ role, skills, interests, bio }),
+          });
           const contentType = response.headers.get("Content-Type");
           if (!contentType || !contentType.includes("application/json")) {
             throw new Error("Server returned non-JSON response.");
@@ -128,17 +130,14 @@
           )
         ) {
           try {
-            const response = await fetch(
-              "/api/profiles/delete",
-              {
-                method: "DELETE",
-                headers: {
-                  Authorization: `Bearer ${localStorage.getItem("token")}`,
-                  "Content-Type": "application/json",
-                  "X-User-ID": userId,
-                },
-              }
-            );
+            const response = await fetch("/api/profiles/delete", {
+              method: "DELETE",
+              headers: {
+                Authorization: `Bearer ${localStorage.getItem("token")}`,
+                "Content-Type": "application/json",
+                "X-User-ID": userId,
+              },
+            });
             if (response.ok) {
               alert("Your account has been deleted. You will be logged out.");
               localStorage.removeItem("token");

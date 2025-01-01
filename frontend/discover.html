@@ -12,46 +12,51 @@
   </head>
 
   <body>
-    <header class="header">
-      <h1>Discover</h1>
-      <nav>
-        <a href="profile-setup.html" class="nav-link">Profile Setup</a>
-        <a href="connections.html" class="nav-link">Connections</a>
-        <button id="logout-btn" class="nav-link">
-          <i class="fa-solid fa-power-off"></i> Logout
-        </button>
-      </nav>
-    </header>
-    <main class="discover">
-      <section class="hero-section">
-        <form id="filter-form">
-          <label for="filter-role">Role:</label>
-          <select id="filter-role">
-            <option value="">All</option>
-            <option value="mentor">Mentor</option>
-            <option value="mentee">Mentee</option>
-          </select>
-          <label for="filter-skills">Skills:</label>
-          <input
-            type="text"
-            id="filter-skills"
-            placeholder="e.g., JavaScript"
-          />
-          <label for="filter-interests">Interests:</label>
-          <input type="text" id="filter-interests" placeholder="e.g., AI" />
-          <button type="submit" class="btn">Filter</button>
-        </form>
-      </section>
-      <h2>Mentors</h2>
-      <section class="scroll-row" id="mentors-list"></section>
-      <h2>Mentees</h2>
-      <section class="scroll-row" id="mentees-list"></section>
-    </main>
+    <div class="page-container">
+      <!-- Header -->
+      <header class="header">
+        <h1>Discover</h1>
+        <nav>
+          <a href="profile-setup.html" class="nav-link">Profile Setup</a>
+          <a href="connections.html" class="nav-link">Connections</a>
+          <button id="logout-btn" class="nav-link">
+            <i class="fa-solid fa-power-off"></i> Logout
+          </button>
+        </nav>
+      </header>
 
-    <!-- Footer -->
-    <footer class="footer">
-      <p>© 2024 Mentorship Matching Platform. All rights reserved.</p>
-    </footer>
+      <!-- Main -->
+      <main class="discover">
+        <section class="hero-section">
+          <form id="filter-form">
+            <label for="filter-role">Role:</label>
+            <select id="filter-role">
+              <option value="">All</option>
+              <option value="mentor">Mentor</option>
+              <option value="mentee">Mentee</option>
+            </select>
+            <label for="filter-skills">Skills:</label>
+            <input
+              type="text"
+              id="filter-skills"
+              placeholder="e.g., JavaScript"
+            />
+            <label for="filter-interests">Interests:</label>
+            <input type="text" id="filter-interests" placeholder="e.g., AI" />
+            <button type="submit" class="btn">Filter</button>
+          </form>
+        </section>
+        <h2>Mentors</h2>
+        <section class="scroll-row" id="mentors-list"></section>
+        <h2>Mentees</h2>
+        <section class="scroll-row" id="mentees-list"></section>
+      </main>
+
+      <!-- Footer -->
+      <footer class="footer">
+        <p>© 2024 Mentorship Matching Platform. All rights reserved.</p>
+      </footer>
+    </div>
 
     <script src="./scripts.js"></script>
     <script>

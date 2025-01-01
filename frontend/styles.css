@@ -38,6 +38,16 @@ body {
   line-height: 1.6;
   margin: 0;
 }
+.page-container {
+  width: 100%;
+  display: flex;
+  gap: 1rem;
+  flex-direction: column;
+  min-height: 100vh;
+}
+main {
+  flex: 1;
+}
 
 /* Header */
 .header {
@@ -116,6 +126,7 @@ header ul {
 .landing {
   text-align: center;
   padding: 2rem;
+  align-items: center;
 }
 
 .cta-buttons button {
@@ -140,6 +151,7 @@ header ul {
 .footer {
   text-align: center;
   padding: 1rem;
+  margin-bottom: 0;
   background-color: var(--primary-color);
   color: var(--accent-color);
   min-width: 600px;
@@ -477,4 +489,30 @@ button.decline-request-btn {
   margin: 0.25rem;
   border-radius: 5px;
   cursor: pointer;
+}
+
+@media screen and (max-width: 768px) {
+  .index {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .landing {
+    margin-bottom: 1rem;
+  }
+
+  #auth-section {
+    margin-top: 0;
+  }
+  .image-container {
+    width: 100%;
+    height: auto;
+    padding: 1rem 0 0 2rem;
+    margin: 0;
+  }
+  
+  .image-container img {
+    width: 20rem;
+    border-radius: 20px;
+  }
 }
