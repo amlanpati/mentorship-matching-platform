@@ -73,7 +73,7 @@ exports.fetchConnectionRequests = async (req, res) => {
     }
 
     const result = await pool.query(
-      "SELECT users.name, connections.id, to_char(connections.created_at AT TIME ZONE 'UTC' AT TIME ZONE 'UT', 'HH24:MI, DD-MM-YY') AS friendly_created_at FROM users JOIN connections ON users.id = connections.sender_id WHERE receiver_id = $1 AND status = 'pending'",
+      "SELECT users.name, connections.id, to_char(connections.created_at AT TIME ZONE 'UTC' AT TIME ZONE 'Asia/Kolkata', 'HH24:MI, DD-MM-YY') AS friendly_created_at FROM users JOIN connections ON users.id = connections.sender_id WHERE receiver_id = $1 AND status = 'pending'",
       [user_id]
     );
     res.status(200).json({ requestsReceived: result.rows });
