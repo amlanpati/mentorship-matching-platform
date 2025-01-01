@@ -1,31 +1,32 @@
 # Mentorship Matching Platform
 
 ## Overview
-The Mentorship Matching Platform is a web-based application designed to connect mentors and mentees based on shared skills, interests, and professional goals. The platform features a robust backend built with Node.js and Express and a responsive frontend deployed on Vercel.
-The project uses a clean, intuitive, and responsive interface using vanilla JS, HTML & CSS (No use of any external library and framework for frontend). It has 
+The Mentorship Matching Platform is a web-based application designed to connect mentors and mentees based on shared skills, interests, and professional goals. The platform features a robust backend built with Node.js and Express and a somewhat responsive frontend deployed on Vercel.
+The project uses a clean, intuitive, and responsive interface using vanilla JS, HTML & CSS (There is no use of any external library and framework for frontend). It has 
+________________________________________
 Pages:
-●	User Registration and Login: A page for users to sign up, log in, and log out securely.
-●	Profile Setup: A page where users can create and edit their profiles, specifying their role (mentor or mentee), skills, interests, and a brief bio.
-●	User Discovery: A page where users can browse through other users' profiles, with filters for role, skills, interests, etc.
+-	User Registration and Login: A page for users to sign up, log in, and log out securely.
+-	Profile Setup: A page where users can create and edit their profiles, specifying their role (mentor or mentee), skills, interests, and a brief bio.
+-	User Discovery: A page where users can browse through other users' profiles, with filters for role, skills, interests, etc.
 ________________________________________
 Functionality:
-●	User Authentication: Implement secure user registration, login, and logout functionalities with input validation and error handling.
-●	Profile Management: Allow users to create, edit, and delete their profiles. Ensure that profile information is accurately displayed and updated.
-●	Connection Requests: Enable users to send and receive mentorship requests, accept or decline requests, and manage ongoing mentorship connections.
+-	User Authentication: Implement secure user registration, login, and logout functionalities with input validation and error handling.
+-	Profile Management: Allow users to create, edit, and delete their profiles. Ensure that profile information is accurately displayed and updated.
+-	Connection Requests: Enable users to send and receive mentorship requests, accept or decline requests, and manage ongoing mentorship connections.
 ________________________________________
 Database Integration:
-●	Setup: Use a relational database to store user information, profiles, and mentorship connections (e.g., PostgreSQL, MySQL).
-●	Relationships: Define clear relationships between users, their profiles, and mentorship requests.
-●	Data Security: Ensure sensitive information is securely stored and handled, following best practices for data protection.
+-	Setup: Use a relational database to store user information, profiles, and mentorship connections (e.g., PostgreSQL, MySQL).
+-	Relationships: Define clear relationships between users, their profiles, and mentorship requests.
+-	Data Security: Ensure sensitive information is securely stored and handled, following best practices for data protection.
 ________________________________________
 Edge Case Handling:
-●	Input Validation: Validate all user inputs to prevent empty fields, invalid data formats, and security vulnerabilities like SQL injection.
-●	Duplicate Prevention: Prevent users from creating duplicate profiles or sending multiple mentorship requests to the same user..
+-	Input Validation: Validate all user inputs to prevent empty fields, invalid data formats, and security vulnerabilities like SQL injection.
+-	Duplicate Prevention: Prevent users from creating duplicate profiles or sending multiple mentorship requests to the same user..
 ________________________________________
 Deployment:
-●	Hosting: Deploy the application on a free hosting platform (e.g., Heroku, Vercel, Netlify).
-●	Accessibility: Ensure the deployed application is fully functional, responsive, and accessible via a public URL.
-●	Environment Variables: Securely manage any API keys or environment variables needed for deployment.
+-	Hosting: Deploy the application on a free hosting platform (e.g., Heroku, Vercel, Netlify).
+-	Accessibility: Ensure the deployed application is fully functional, responsive, and accessible via a public URL.
+-	Environment Variables: Securely manage any API keys or environment variables needed for deployment.
 The "About Us" and "Blogs" links in the index page are placeholders for future improvisations.
 
 ## Deployment Links
