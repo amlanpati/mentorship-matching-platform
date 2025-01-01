@@ -1,0 +1,8 @@
+{
+    "rewrites": [
+      {
+        "source": "/api/(.*)",
+        "destination": "https://mentorship-matching-platform-backend.vercel.app/api/$1"
+      }
+    ]
+  }

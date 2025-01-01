@@ -79,7 +79,7 @@ document.addEventListener("DOMContentLoaded", () => {
       }
 
       try {
-        const response = await fetch("mentorship-matching-platform-delta.vercel.app/api/auth/login", {
+        const response = await fetch("/api/auth/login", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ email, password }),
@@ -142,7 +142,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
       try {
         const response = await fetch(
-          "mentorship-matching-platform-delta.vercel.app/api/auth/register",
+          "/api/auth/register",
           {
             method: "POST",
             headers: { "Content-Type": "application/json" },
